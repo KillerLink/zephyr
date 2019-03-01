@@ -1,0 +1,130 @@
+.. _cc2538_developmentkit:
+
+CC2538 Development Kit
+######################
+
+Overview
+********
+
+The CC2538DK is a development kit featuring the CC2538EM 
+Evaluation Module combined with the SmartRF06 Board.
+
+The SoC provides a programmable microcontroller with
+ GPIO, serial interfaces, and wireless functionality.
+
+Features:
+=========
+
+* CC2538 MCU
+* USB Flashing and Debugging over XDS100v3
+* USB Serial Communication over XDS100v3
+* 4 On-Board LEDs
+* 5 On-Board Buttons
+* USB or Battery Powered
+* LCD Display over SPI
+* SDCard Slot over SPI
+* Light Sensor
+* Accelerometer
+
+Hardware
+********
+
+TODO: Oscillator description
+TODO: CC2538 Description
+
+Supported Features
+==================
+
+Zephyr has been ported to the CC2538 MCU, with basic
+peripheral driver support
+
++-----------+------------+-----------------------+
+| Interface | Controller | Driver/Component      |
++-----------+------------+-----------------------+
+| UART      | on-chip    | serial                |
++-----------+------------+-----------------------+
+| GPIO      | on-chip    | gpio                  |
++-----------+------------+-----------------------+
+| RF        | on-chip    | ???                   |
++-----------+------------+-----------------------+
+
+Connections and IOs
+===================
+
+Peripherals on the CC2538DK are mapped to the following
+pins (in the file boards/arm/cc2538_developmentkit/pinmux.c):
+
++----------------+-----+------+
+| Function       | PIN | GPIO |
++----------------+-----+------+
+| LED0           |     |      |
++----------------+-----+------+
+| LED1           |     |      |
++----------------+-----+------+
+| LED2           |     |      |
++----------------+-----+------+
+| LED3           |     |      |
++----------------+-----+------+
+| BUTTON0        |     |      |
++----------------+-----+------+
+| BUTTON1        |     |      |
++----------------+-----+------+
+| BUTTON2        |     |      |
++----------------+-----+------+
+| BUTTON3        |     |      |
++----------------+-----+------+
+| BUTTON4        |     |      |
++----------------+-----+------+
+
+The default configuration can be found in the Kconfig file
+at boards/arm/cc2538_developmentkit/cc2538_developmentkit_defconfig
+
+Programming and Debugging
+*************************
+
+Build
+=====
+
+Follow the :ref:`getting_started` instructions for Zepyhr
+application development.
+
+To build for the CC2538 Development Kit:
+
+.. code-block:: console
+
+	% mkdir build
+    % mkdir build/cc2538dk
+	% cd build/cc2538dk
+    % cmake ../.. -DBOARD=cc2538_developmentkit
+    % make
+
+This will produce both a zephyr.elf (for GDB debugging)
+and a zephyr.bin file (for flashing) in the build/cc2538dk
+subdirectory
+
+FTDI USB Setup
+==============
+
+The CC2538 Development Kit has onboard USB-Serial 
+capabilities provided by the XDS100v3 chip.
+
+Under Linux, plugging in the device should result
+in two new devices as /dev/ttyUSB[0-99]
+It might be helpfull to check the output of the "dmesg"
+command to find wheter or not the devices are present
+and what their names are
+
+It might be necessary to setup permissions as follows:
+TODO: insert udev description
+
+It might be necessary to setup the ftdi driver to be used:
+TODO: insert ftdi driver description
+
+If only reading from the Device is required the following
+command sequence can be helpfull:
+TODO: insert stty && cat command description
+
+Debugging
+=========
+
+TODO: test debugging

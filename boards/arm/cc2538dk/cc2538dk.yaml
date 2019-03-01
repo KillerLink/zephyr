@@ -1,0 +1,8 @@
+identifier: cc2538dk
+name: Texas Instruments CC2538 Development Kit
+type: mcu
+arch: arm
+toolchain:
+  - zephyr
+  - gccarmemb
+ram: 32

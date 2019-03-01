@@ -1,0 +1,8 @@
+# (Created by [TheM])
+
+# Kconfig - TI CC2650DK configuration
+
+if BOARD_CC2538DK
+
+endif # BOARD_CC2538DK
+

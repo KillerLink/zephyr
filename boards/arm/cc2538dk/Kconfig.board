@@ -1,0 +1,7 @@
+# (Created by [TheM])
+
+# Kconfig - TI CC2538 Development Kit Board
+
+config BOARD_CC2538DK
+	bool "TI CC2538DK Board"
+	depends on SOC_TI_CC2538

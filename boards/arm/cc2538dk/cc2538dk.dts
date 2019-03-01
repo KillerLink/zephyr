@@ -1,0 +1,81 @@
+// (Created by [TheM])
+
+/dts-v1/;
+
+#include "ti/cc2538.dtsi"
+
+/ {
+	model = "TI CC2538 Development Kit";
+	compatible = "ti,cc2538dk", "ti,cc2538";
+
+//TODO: do i need this?
+	aliases {
+		uart0 = &uart0;
+		uart1 = &uart1;
+#ifdef CONFIG_GPIO_TI_CC2538_PORTA
+		porta = &gpio0;
+#endif
+#ifdef CONFIG_GPIO_TI_CC2538_PORTB
+		portb = &gpio1;
+#endif
+#ifdef CONFIG_GPIO_TI_CC2538_PORTC
+		portc = &gpio2;
+#endif
+#ifdef CONFIG_GPIO_TI_CC2538_PORTD
+		portd = &gpio3;
+#endif
+	};
+
+	chosen {
+		zephyr,sram = &sram0;
+		zephyr,flash = &flash0;
+		zephyr,cca = &flash1;
+		zephyr,console = &uart0;
+#ifdef CONFIG_GPIO_TI_CC2538_PORTA
+		zephyr,gpio0 = &gpio0;
+#endif
+#ifdef CONFIG_GPIO_TI_CC2538_PORTB
+		zephyr,gpio1 = &gpio1;
+#endif
+#ifdef CONFIG_GPIO_TI_CC2538_PORTC
+		zephyr,gpio2 = &gpio2;
+#endif
+#ifdef CONFIG_GPIO_TI_CC2538_PORTD
+		zephyr,gpio3 = &gpio3;
+#endif
+	};
+};
+
+&uart0 {
+	status = "ok";
+	current-speed = <460800>;
+};
+
+&uart1 {
+	status = "ok";
+	current-speed = <460800>;
+};
+
+#ifdef CONFIG_GPIO_TI_CC2538_PORTA
+&gpio0 {
+	status = "ok";
+};
+#endif
+
+#ifdef CONFIG_GPIO_TI_CC2538_PORTB
+&gpio1 {
+	status = "ok";
+};
+#endif
+
+#ifdef CONFIG_GPIO_TI_CC2538_PORTC
+&gpio2 {
+	status = "ok";
+};
+#endif
+
+#ifdef CONFIG_GPIO_TI_CC2538_PORTD
+&gpio3 {
+	status = "ok";
+};
+#endif

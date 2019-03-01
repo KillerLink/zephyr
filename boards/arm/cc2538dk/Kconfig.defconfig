@@ -1,0 +1,11 @@
+# (Created by [TheM])
+
+# Kconfig - TI CC2538DK board configuration
+
+
+if BOARD_CC2538DK
+
+config BOARD
+	default "cc2538dk"
+
+endif # BOARD_CC2538DK
