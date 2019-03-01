@@ -1,0 +1,33 @@
+# (Created by [TheM])
+# Kconfig - CC2538 SDK HAL configuration
+
+
+config TI_CC2538_HAS_SDK
+	bool
+	default y
+
+menuconfig TI_CC2538_USE_SDK
+	bool "TI CC2538 SDK support"
+	default y
+	depends on TI_CC2538_HAS_SDK
+	help
+	Set when
+
+if TI_CC2538_USE_SDK
+
+config TI_CC2538_USE_SDK_DRIVERLIB
+        bool "Enable building the CC2538 SDK files stored in the Zephyr tree"
+        default y
+        depends on TI_CC2538_USE_SDK
+        help
+        Link with local CC2538 SDK driverlib sources.
+
+#config TI_CC2538_USE_SDK_ROMLIB
+#        bool "Use the Peripheral Driver library functions in ROM"
+#        default n
+#        select TI_CC2538_USE_SDK
+#        help
+#        Vector to CC2538 SDK driverlib APIs in ROM.
+#
+
+endif
