@@ -1,0 +1,12 @@
+# (Created by [TheM])
+#
+# Kconfig - TI CC2538 platform configuration options
+
+
+if SOC_TI_CC2538
+
+#config SOC_TI_CC2538_TESTING
+#	bool "Testing option from arch/arm/soc/ti_cc2538/Kconfig"
+#	default n
+
+endif # SOC_TI_CC2538

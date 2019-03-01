@@ -1,0 +1,25 @@
+# (Created by [TheM])
+#
+# Kconfig - TI CC2538 platform configuration options
+
+if SOC_TI_CC2538
+
+config SOC
+	default "ti_cc2538"
+
+config NUM_IRQS
+	int
+	# must be >= the highest interrupt number used
+	# could be less for primary instead of secondary table
+	default 180
+
+config SYS_CLOCK_HW_CYCLES_PER_SEC
+	int
+	default 32000000
+
+if IEEE802154 && NET_CONFIG_SETTINGS && IEEE802154_TI_CC2538_RF
+	config NET_CONFIG_IEEE802154_DEV_NAME
+		default IEEE802154_TI_CC2538_RF_DRV_NAME
+endif # IEEE802154 && NET_CONFIG_SETTINGS
+
+endif # SOC_TI_CC2538
