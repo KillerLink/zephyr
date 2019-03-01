@@ -2,6 +2,7 @@ zephyr_library()
 
 zephyr_library_sources_ifdef(CONFIG_GPIO_ALTERA_NIOS2 gpio_altera_nios2.c)
 zephyr_library_sources_ifdef(CONFIG_GPIO_ATMEL_SAM3 gpio_atmel_sam3.c)
+zephyr_library_sources_ifdef(CONFIG_GPIO_TI_CC2538  gpio_ti_cc2538.c)
 zephyr_library_sources_ifdef(CONFIG_GPIO_CC2650     gpio_cc2650.c)
 zephyr_library_sources_ifdef(CONFIG_GPIO_CC32XX     gpio_cc32xx.c)
 zephyr_library_sources_ifdef(CONFIG_GPIO_CMSDK_AHB  gpio_cmsdk_ahb.c)
