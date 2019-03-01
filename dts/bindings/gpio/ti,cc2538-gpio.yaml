@@ -1,0 +1,30 @@
+# (Created by [TheM])
+---
+title: TI CC2538 GPIO
+version: 0.1
+
+description: >
+    This is a representation of the TI CC2538 GPIO node
+
+inherits:
+    !include uart.yaml
+
+properties:
+    compatible:
+      type: string
+      category: required
+      description: compatible strings
+      constraint: "ti,cc2538-gpio"
+
+    reg:
+      type: int
+      description: mmio register space
+      generation: define
+      category: required
+
+    interrupts:
+      type: compound
+      category: required
+      description: required interrupts
+      generation: define
+...

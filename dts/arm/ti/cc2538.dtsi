@@ -1,0 +1,135 @@
+// (Created by [TheM])
+
+#include <arm/armv7-m.dtsi>
+
+/* Note: Zephyr uses exception numbers, vs the IRQ #s
+ * used by the CC2538 SDK which are offset by 16
+ */
+
+#define DT_IRQ_GPIO_PORTA_PRI CONFIG_GPIO_TI_CC2538_PORTA_IRQ_PRI
+#define DT_IRQ_GPIO_PORTB_PRI CONFIG_GPIO_TI_CC2538_PORTB_IRQ_PRI
+#define DT_IRQ_GPIO_PORTC_PRI CONFIG_GPIO_TI_CC2538_PORTC_IRQ_PRI
+#define DT_IRQ_GPIO_PORTD_PRI CONFIG_GPIO_TI_CC2538_PORTD_IRQ_PRI
+#define DT_IRQ_UART0_PRI 2
+#define DT_IRQ_UART1_PRI 2
+
+#define DT_GPIO0_NAME CONFIG_GPIO_TI_CC2538_PORTA_NAME
+#define DT_GPIO1_NAME CONFIG_GPIO_TI_CC2538_PORTB_NAME
+#define DT_GPIO2_NAME CONFIG_GPIO_TI_CC2538_PORTC_NAME
+#define DT_GPIO3_NAME CONFIG_GPIO_TI_CC2538_PORTD_NAME
+
+/ {
+
+
+        cpus {
+		#address-cells = <1>;
+		#size-cells = <0>;
+                cpu@0 {
+                        device_type = "cpu";
+                        compatible = "arm,cortex-m3";
+                        reg = <0>;
+                };
+        };
+
+
+        sram0: sram@20000000 {
+                device_type = "memory";
+                compatible = "mmio-sram";
+                reg = <0x20000000 0x8000>;
+        };
+
+
+        flash0: flash@200000 {
+                compatible = "flash";
+                reg = <0x00200000 0x7ffd4>;
+                label = "prgmem";
+        };
+
+
+        flash1: flash@27ffd4 {
+                compatible = "flash";
+                reg = <0x0027ffd4 0x2C>;
+                label = "cca";
+        };
+
+        soc {
+
+                uart0: uart@4000c000 {
+                        compatible = "ti,cc2538-uart";
+                        //compatible = "ti,stellaris-uart";
+                        //compatible = "arm,cmsdk-uart";
+                        reg = <0x4000c000 0x1000>;
+                        interrupts = <5 DT_IRQ_UART0_PRI>;
+                        status = "disabled";
+                        label = "UART_0";
+                };
+
+
+                uart1: uart@4000d000 {
+                        compatible = "ti,cc2538-uart";
+                        //compatible = "ti,stellaris-uart";
+                        //compatible = "arm,cmsdk-uart";
+                        reg = <0x4000d000 0x1000>;
+                        interrupts = <6 DT_IRQ_UART1_PRI>;
+                        status = "disabled";
+                        label = "UART_1";
+                };
+
+#ifdef CONFIG_GPIO_TI_CC2538_PORTA
+                gpio0: gpio@400d9000 {
+                        compatible = "ti,cc2538-gpio";
+                        reg = <0x400d9000 0x1000>;
+                        interrupts = <0 DT_IRQ_GPIO_PORTA_PRI>;
+                        zephyr,irq-prio = <DT_IRQ_GPIO_PORTA_PRI>;
+                        status = "disabled";
+                        label = DT_GPIO0_NAME;
+                        gpio-controller;
+                        #gpio-cells = <1>;
+                };
+#endif
+
+#ifdef CONFIG_GPIO_TI_CC2538_PORTB
+                gpio1: gpio@400da000 {
+                        compatible = "ti,cc2538-gpio";
+                        reg = <0x400da000 0x1000>;
+                        interrupts = <1 DT_IRQ_GPIO_PORTB_PRI>;
+                        zephyr,irq-prio = <DT_IRQ_GPIO_PORTB_PRI>;
+                        status = "disabled";
+                        label = DT_GPIO1_NAME;
+                        gpio-controller;
+                        #gpio-cells = <1>;
+                };
+#endif
+
+#ifdef CONFIG_GPIO_TI_CC2538_PORTC
+                gpio2: gpio@400db000 {
+                        compatible = "ti,cc2538-gpio";
+                        reg = <0x400db000 0x1000>;
+                        interrupts = <2 DT_IRQ_GPIO_PORTC_PRI>;
+                        zephyr,irq-prio = <DT_IRQ_GPIO_PORTC_PRI>;
+                        status = "disabled";
+                        label = DT_GPIO2_NAME;
+                        gpio-controller;
+                        #gpio-cells = <1>;
+                };
+#endif
+
+#ifdef CONFIG_GPIO_TI_CC2538_PORTD
+                gpio3: gpio@400dc000 {
+                        compatible = "ti,cc2538-gpio";
+                        reg = <0x400dc000 0x1000>;
+                        interrupts = <3 DT_IRQ_GPIO_PORTD_PRI>;
+                        zephyr,irq-prio = <DT_IRQ_GPIO_PORTD_PRI>;
+                        status = "disabled";
+                        label = DT_GPIO3_NAME;
+                        gpio-controller;
+                        #gpio-cells = <1>;
+                };
+#endif
+
+        };
+};
+
+&nvic {
+	arm,num-irq-priority-bits = <3>;
+};
