@@ -1,0 +1,99 @@
+menuconfig UART_TI_CC2538
+	depends on SOC_TI_CC2538
+	bool "CC2538 UART driver"
+	default n
+	select SERIAL_HAS_DRIVER
+	help
+	  This option enables the CC2538 UART driver.
+
+config UART_TI_CC2538_DRIVER_NAME
+	string "TI CC2538 UART Drivername"
+	depends on UART_TI_CC2538
+	default "TI_CC2538_UART_DRIVER"
+
+
+config UART_TI_CC2538_INTERRUPTDRIVEN
+	depends on UART_TI_CC2538
+	select UART_INTERRUPT_DRIVEN
+	select SERIAL_SUPPORT_INTERRUPT
+	bool "Enable Interrupt Driven UART"
+	default n
+
+
+#UART 0
+config UART_TI_CC2538_UART0
+	depends on UART_TI_CC2538
+	bool "Configure UART0"
+	default n
+	help
+		This option enables the configuration and usage of UART0
+
+choice UART_TI_CC2538_UART0_CLOCK_SOURCE
+	prompt "Select UART0 clock source"
+	depends on UART_TI_CC2538_UART0
+	config UART_TI_CC2538_UART0_CLOCK_SYSTEM
+		bool "System Clock"
+	config UART_TI_CC2538_UART0_CLOCK_PIOSC
+		bool "Periperial IO Clock"
+endchoice
+
+config UART_TI_CC2538_UART0_INSLEEP
+	depends on UART_TI_CC2538_UART0
+	bool "Allow to continue operation Sleep Mode"
+	default y
+	help
+	  This option allows to continue the Uart Module to continue Operation in Sleep Mode.
+	  (Possibly Higher Power Consumption!)
+
+config UART_TI_CC2538_UART0_INDEEPSLEEP
+	depends on UART_TI_CC2538_UART0
+	depends on UART_TI_CC2538_UART0_INSLEEP
+	bool "Allow to continue operation DeepSleep Mode"
+	default y
+	help
+	  This option allows to continue the Uart Module to continue Operation in Sleep Mode.
+	  (Possibly Higher Power Consumption!)
+
+config UART_TI_CC2538_UART0_FIFOS
+	depends on UART_TI_CC2538_UART0
+	bool "Enable RX/TX Hardware FIFOs."
+	default n
+
+#UART1
+config UART_TI_CC2538_UART1
+	depends on UART_TI_CC2538
+	bool "Configure UART1"
+	default n
+	help
+		This option enables the configuration and usage of UART1
+
+choice UART_TI_CC2538_UART1_CLOCK_SOURCE
+	prompt "Select UART1 clock source"
+	depends on UART_TI_CC2538_UART1
+	config UART_TI_CC2538_UART1_CLOCK_SYSTEM
+		bool "System Clock"
+	config UART_TI_CC2538_UART1_CLOCK_PIOSC
+		bool "Periperial IO Clock"
+endchoice
+
+config UART_TI_CC2538_UART1_INSLEEP
+	depends on UART_TI_CC2538_UART1
+	bool "Allow to continue operation Sleep Mode"
+	default n
+	help
+	  This option allows to continue the Uart Module to continue Operation in Sleep Mode.
+	  (Possibly Higher Power Consumption!)
+
+config UART_TI_CC2538_UART1_INDEEPSLEEP
+	depends on UART_TI_CC2538_UART1
+	depends on UART_TI_CC2538_UART1_INSLEEP
+	bool "Allow to continue operation DeepSleep Mode"
+	default n
+	help
+	  This option allows to continue the Uart Module to continue Operation in Sleep Mode.
+	  (Possibly Higher Power Consumption!)
+
+config UART_TI_CC2538_UART1_FIFOS
+	depends on UART_TI_CC2538_UART1
+	bool "Enable RX/TX Hardware FIFOs."
+	default n
