@@ -1,0 +1,59 @@
+# (Created by [TheM])
+
+# Kconfig.cc2538 - TI CC2538 configuration options
+#
+
+menuconfig IEEE802154_TI_CC2538_RF
+	bool "TI CC2538 Driver support"
+	depends on NETWORKING
+	depends on NET_L2_IEEE802154
+	default n
+
+if IEEE802154_TI_CC2538_RF
+
+config IEEE802154_TI_CC2538_RF_DRV_NAME
+	string "TI CC2538 Driver's name"
+	default "ti_cc2538_rf_radio"
+	help
+	This option sets the driver name
+
+config IEEE802154_TI_CC2538_RF_RX_STACK_SIZE
+	int "Driver's internal RX thread stack size"
+	default 1024
+	help
+	This option sets the driver's stack size for its internal RX thread.
+	The default value should be sufficient, but in case it proves to be
+	a too little one, this option makes it easy to play with the size.
+
+config IEEE802154_TI_CC2538_RF_INIT_PRIO
+	int "CC2538 initialization priority"
+	default 80
+	help
+	Set the initialization priority number. Do not mess with it unless
+	you know what you are doing. And of course it has to start before the net stack.
+
+config IEEE802154_TI_CC2538_RF_SHORT_ADDR
+	hex "Short Address"
+	default 0xdead
+	range 0 0xffff
+	help
+	  This is the link layer short address.
+
+
+config IEEE802154_TI_CC2538_RF_MAC
+	hex "MAC Address"
+	default 0x0123456789abcdef
+	range 0 0xffffffffffffffff
+	help
+	  This is the link layer MAC address.
+
+config IEEE802154_TI_CC2538_RF_MAC_RANDOM_BYTES
+	int "Number of the right-most mac bytes to be randomized"
+	default 4	
+	range 0 8
+	help
+		The right-most x bytes of the mac address will be overwritten
+		 on device initialization with random values.
+
+
+endif # IEEE802154_TI_CC2538_RF
