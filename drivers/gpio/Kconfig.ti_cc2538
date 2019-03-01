@@ -1,0 +1,113 @@
+# (Created by [TheM])
+
+# Kconfig.cc2538- CC2538 GPIO configuration options
+#
+
+menuconfig GPIO_TI_CC2538
+	bool "TI CC2538 GPIO driver"
+	depends on GPIO && SOC_TI_CC2538
+	default n
+	help
+	  Enable the GPIO driver on TI CC2538 boards
+
+if GPIO_TI_CC2538
+
+config GPIO_TI_CC2538_DRIVER_INIT_PRI
+	int "GPIO initialization priority"
+	range 0 5
+	default 3
+	help
+		CC2538 GPIO Initializatzion priority	
+
+# PORTA
+config GPIO_TI_CC2538_PORTA
+	bool "GPIO block A"
+	depends on GPIO_TI_CC2538
+	default n
+	help
+	  Include support for the GPIO PORT A.
+
+config GPIO_TI_CC2538_PORTA_NAME
+	string "GPIO PORTA device name"
+	depends on GPIO_TI_CC2538_PORTA
+	default "GPIO_PORTA"
+
+config GPIO_TI_CC2538_PORTA_IRQ_PRI
+	int "GPIO A interrupt priority"
+	depends on GPIO_TI_CC2538_PORTA
+	range 0 5
+	default 1
+	help
+	  CC2538 GPIO A IRQ priority.
+# END PORTA
+
+
+# PORTB
+config GPIO_TI_CC2538_PORTB
+	bool "GPIO block B"
+	depends on GPIO_TI_CC2538
+	default n
+	help
+	  Include support for the GPIO PORT B.
+
+config GPIO_TI_CC2538_PORTB_NAME
+	string "GPIO PORTB device name"
+	depends on GPIO_TI_CC2538_PORTB
+	default "GPIO_PORTB"
+
+config GPIO_TI_CC2538_PORTB_IRQ_PRI
+	int "GPIO B interrupt priority"
+	depends on GPIO_TI_CC2538_PORTB
+	range 0 5
+	default 1
+	help
+	  CC2538 GPIO B IRQ priority.
+# END PORTB
+
+
+# PORTC
+config GPIO_TI_CC2538_PORTC
+	bool "GPIO block C"
+	depends on GPIO_TI_CC2538
+	default n
+	help
+	  Include support for the GPIO PORT C.
+
+config GPIO_TI_CC2538_PORTC_NAME
+	string "GPIO PORTC device name"
+	depends on GPIO_TI_CC2538_PORTC
+	default "GPIO_PORTC"
+
+config GPIO_TI_CC2538_PORTC_IRQ_PRI
+	int "GPIO C interrupt priority"
+	depends on GPIO_TI_CC2538_PORTC
+	range 0 5
+	default 1
+	help
+	  CC2538 GPIO C IRQ priority.
+# END PORTC
+
+
+# PORTD
+config GPIO_TI_CC2538_PORTD
+	bool "GPIO block D"
+	depends on GPIO_TI_CC2538
+	default n
+	help
+	  Include support for the GPIO PORT D.
+
+config GPIO_TI_CC2538_PORTD_NAME
+	string "GPIO PORTD device name"
+	depends on GPIO_TI_CC2538_PORTD
+	default "GPIO_PORTD"
+
+config GPIO_TI_CC2538_PORTD_IRQ_PRI
+	int "GPIO D interrupt priority"
+	depends on GPIO_TI_CC2538_PORTD
+	range 0 5
+	default 1
+	help
+	  CC2538 GPIO D IRQ priority.
+# END PORTC
+
+endif # GPIO_TI_CC2538
