@@ -1,0 +1,6 @@
+sample:
+	name: Demonstration Sample for CC2538DK
+tests:
+	test:
+		platform_whitelist: cc2538dk
+	tags: cc2538 samples demo uart rf
